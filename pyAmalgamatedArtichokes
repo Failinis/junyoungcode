@@ -1,0 +1,43 @@
+#create necessary variables and import math
+arr = []
+g = []
+declines = []
+
+import math as m
+
+#open the input file and store the numbers in the file to an array
+with open ('amalg_input.txt') as f:
+    for line in f:
+        x = line.split()
+        arr.append(int(x[0]))
+        arr.append(int(x[1]))
+        arr.append(int(x[2]))
+        arr.append(int(x[3]))
+        arr.append(int(x[4]))
+        arr.append(int(x[5]))
+
+#calculate the prices using the given equation
+def prices(x):
+    for k in range(1, x[5] + 1):
+        p = x[0] * (m.sin(x[1] * k + x[2]) + m.cos(x[3] * k + x[4]) + 2)
+        g.append(p)
+
+#calculate the declines in the prices and find the greatest decline
+def grDec(g):
+    for i in g:
+        copy = i
+        for j in g:
+            if(g.index(j) > g.index(copy)):
+                diff = copy - j
+                if(diff > 0):
+                    declines.append(diff)    
+    #store the greatest decline to the output file
+    o = open('amalg_output.txt', 'w')
+    try:
+        o.write(str(max(declines)))
+    except ValueError:
+        o.write(str(0))
+    o.close()
+#start the functions to get the answer in the output file
+prices(arr)
+grDec(g)

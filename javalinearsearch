@@ -1,0 +1,37 @@
+import java.util.Random;
+
+public class LinearSearch {
+	
+	public static void main(String args[]){
+		int[] a = new int[10];
+		for(int i = 0; i < a.length; i++){
+			a[i] = RandomInt(1, 100);
+		}
+		
+		System.out.print(a[0] + " " + a[1] + " " + a[2] + " " + a[3] + " " + a[4] +
+								" " + a[5] + " " + a[6] + " " + a[7] + " " + a[8] + " " + a[9]);
+		System.out.println();
+		
+		Search(RandomInt(1, 100), a);
+	}
+	
+	public static int RandomInt(int min, int max){
+		Random r = new Random();
+		int range = max - min + 1;
+		int rnum = r.nextInt(range) + min;
+		return rnum;
+	}
+	
+	public static void Search(int guess, int a[]){
+		boolean flag = false;
+		for(int i = 0; i < a.length; i++){
+			if(a[i] == guess){
+				flag = true;
+				i++;
+				System.out.println("You guessed " + guess + "." + " Correct. The number is in position " + i + ".");
+			}
+		}
+		if(flag == false)
+			System.out.println("You guessed " + guess + "." + " Incorrect.");
+	}
+}

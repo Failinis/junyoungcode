@@ -1,0 +1,40 @@
+import java.util.Random;
+
+public class InsertionSort {
+	
+	public static void main(String args[]){
+		int[] a = new int[10];
+		for(int i = 0; i < a.length; i++){
+			a[i] = RandomInt(1, 100);
+		}
+		
+		System.out.print(a[0] + " " + a[1] + " " + a[2] + " " + a[3] + " " + a[4] +
+								" " + a[5] + " " + a[6] + " " + a[7] + " " + a[8] + " " + a[9]);
+		
+		System.out.println();
+		
+		Sort(a);
+		
+		System.out.print(a[0] + " " + a[1] + " " + a[2] + " " + a[3] + " " + a[4] +
+								" " + a[5] + " " + a[6] + " " + a[7] + " " + a[8] + " " + a[9]);
+	}
+	
+	public static int RandomInt(int min, int max){
+		Random r = new Random();
+		int range = max - min + 1;
+		int rnum = r.nextInt(range) + min;
+		return rnum;
+	}
+	
+	public static void Sort(int a[]){
+		for(int i = 1; i < a.length; i++){
+			int sort = a[i];
+			int insert = i-1;
+			while(insert >= 0 && a[insert] > sort){
+				a[insert+1] = a[insert];
+				insert--;
+			}
+			a[insert+1] = sort;
+		}
+	}
+}
